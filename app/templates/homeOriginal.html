@@ -1,0 +1,181 @@
+{% load staticfiles %}
+<html lang="en">
+<head>
+  <script src="{{ STATIC_URL }}script.js"></script>
+  <link  type="text/javascript" href="{{ STATIC_URL }}script.js">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IDE SQL</title>
+
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+  <script>
+  $( function() {
+      $( "#tabs" ).tabs();
+      $( "#tabs2" ).tabs();
+
+      $("#btn_addTab").click(function()
+      {
+       var list = document.getElementsByClassName("col-sm-8 text-left");
+       var colum1 = list[0];
+       var hijos = colum1.children;
+       //_______________________________________________________________________
+       var tabs = hijos[0];
+       var ul1=tabs.children[0];
+
+
+       var litmp = ul1.children[ul1.children.length - 2];
+
+       var li_n = litmp.cloneNode(true);//document.createElement('li');
+       var nmTab = new Date().toLocaleTimeString('en-US', { hour12: false,hour: "numeric",minute: "numeric",second: "numeric"});
+       nmTab=nmTab.replace(":", "_");
+       nmTab=nmTab.replace(":", "_");
+
+       li_n.innerHTML =litmp.innerHTML; //"<a href=\"#tabs-"+nmTab+"\">"+nmTab+"</a>";
+       var h_1= li_n.children[0];
+       h_1.href="#tabs-"+nmTab;
+
+       var Div1Tmp = tabs.children[tabs.children.length - 2];
+       //var div_n = Div1Tmp.cloneNode(true);
+       //div_n.id='tabs-'+nmTab;
+       var div_n = Div1Tmp.cloneNode(true);
+       div_n.id='tabs-'+nmTab;
+       div_n.text='tabs-'+nmTab;
+       div_n.innerHTML = Div1Tmp.innerHTML;
+       tabs.appendChild(div_n);
+       ul1.appendChild(li_n);
+       //_________________________agregando el nuevo DIV a TABS_________________
+       /*var div_n = document.createElement('div');
+       div_n.id='tabs-'+nmTab;
+       div_n.innerHTML ='  <div class="form-group">'+
+                        '     <textarea class="form-control" rows="10" id="comment"></textarea>'+
+                        '  </div>';
+       tabs.appendChild(div_n);
+*/
+
+       alert(tabs.children.length);
+
+      });
+
+    }
+  );
+
+  </script>
+</head>
+<body>
+  <div class="page-header">
+    <h1>FISQL - IDE </h1>
+  </div>
+
+  <nav class="navbar navbar-inverse">
+  <div class="container-fluid">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      <a class="navbar-brand" href="#">Logo</a>
+    </div>
+    <div class="collapse navbar-collapse" id="myNavbar">
+      <ul class="nav navbar-nav">
+        <li class="active"><a href="#">Home</a></li>
+        <li><a href="#"> <span class="glyphicon glyphicon-file"></span>  ARCHIVO</a></li>
+        <li><a href="#"> <span class="glyphicon glyphicon-tasks"> HERRAMIENTAS</a></li>
+        <li><a href="#">_____<span class="glyphicon glyphicon-cloud-upload"></span> Backup</a></li>
+        <li><a href="#"> <span class="glyphicon glyphicon-dashboard"></span> Restore</a></li>
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        <li><a><span class="glyphicon glyphicon-user"> admin</a></li>
+        <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> |Cerrar Sesion</a></li>
+      </ul>
+    </div>
+  </div>
+</nav>
+
+
+<div class="row content">
+  <div class="col-sm-2 sidenav">
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+    <p><a href="#">Link</a></p>
+  </div>
+
+  <div id="columnaTabs" class="col-sm-8 text-left">
+    <div id="tabs">
+      <ul id="ul1">
+        <li><a href="#tabs-SQL">SQL</a></li>
+        <li><a href="#tabs-2">Proin dolor</a></li>
+        <li><a href="#tabs-3">Aenean lacinia</a></li>
+        <li><button id="btn_addTab" type="button" onclick="myFunction()" class="btn btn-warning">+</button></li>
+      </ul>
+      <div id="tabs-SQL">
+        <div class="form-group">
+          <textarea class="form-control" rows="10" id="comment"></textarea>
+        </div>
+      </div>
+      <div id="tabs-2">
+        <div class="form-group">
+          <textarea class="form-control" rows="10" id="comment"></textarea>
+        </div>
+      </div>
+      <div id="tabs-3">
+        <div class="form-group">
+          <textarea class="form-control" rows="10" id="comment"></textarea>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <div id ="columna2" class="col-sm-8 text-left">
+    <div id="tabs2">
+      <ul>
+        <li><a href="#tabs-Salida">SalidaDatos</a></li>
+        <li><a href="#tabs-Ejecucion">PlanEjecucion</a></li>
+        <li><a href="#tabs-Mensajes">Mensajes</a></li>
+        <li><a href="#tabs-Historial">Historial</a></li>
+        <li><button type="button" onclick="myFunction()" class="btn btn-warning">+</button></li>
+      </ul>
+      <div id="tabs-Salida">
+        <div class="form-group">
+          <textarea class="form-control" rows="5" id="comment"></textarea>
+        </div>
+      </div>
+      <div id="tabs-Ejecucion">
+        <div class="container">
+          <div class="form-group">
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="tabs-Mensajes">
+        <div class="container">
+          <div class="form-group">
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+      <div id="tabs-Historial">
+        <div class="container">
+          <div class="form-group">
+            <textarea class="form-control" rows="5" id="comment"></textarea>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+</body>
+</html>

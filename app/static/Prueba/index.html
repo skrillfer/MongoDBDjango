@@ -1,0 +1,106 @@
+<html>
+    <head>
+        <title>Use jsTree</title>
+        <script src="jquery.js">
+        </script>
+        <script src="jquery.jstree.js">
+        </script>
+        <script>
+
+var jsonData = [{"id":"0",
+"name":"BASES_DATOS",
+"text":"BASES_DATOS",
+"children":[
+{"id":"1",
+"name":"b201213562",
+"text":"b201213562",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},{"id":"2",
+"name":"base11",
+"text":"base11",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},{"id":"3",
+"name":"base22",
+"text":"base22",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},{"id":"4",
+"name":"base33",
+"text":"base33",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},{"id":"5",
+"name":"base44",
+"text":"base44",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},{"id":"6",
+"name":"base55",
+"text":"base55",
+"children":[
+],
+a_attr:{
+"parent":"BASES_DATOS",
+}
+},]
+}];
+
+
+            $(document).ready(function(){
+                $("#treeViewDiv").jstree({
+                    "json_data" : {
+                        "data":[
+                            {
+                                "data" : "Search engines",
+                                "children" :[
+                                             {"data":"Yahoo", "metadata":{"href":"http://www.yahoo.com"}},
+                                             {"data":"Bing", "metadata":{"href":"http://www.bing.com"}},
+                                             {"data":"Google", "children":[{"data":"Youtube", "metadata":{"href":"http://youtube.com"}},{"data":"Gmail", "metadata":{"href":"http://www.gmail.com"}},{"data":"Orkut","metadata":{"href":"http://www.orkut.com"}}], "metadata" : {"href":"http://youtube.com"}}
+                                            ]
+                            },
+                            {
+                                "data" : "Networking sites",
+                                "children" :[
+                                    {"data":"Facebook", "metadata":{"href":"http://www.fb.com"}},
+                                    {"data":"Twitter", "metadata":{"href":"http://twitter.com"}}
+                                ]
+                            }
+                        ]
+                    },
+                    "plugins" : [ "themes", "json_data", "ui" ]
+                }).bind("select_node.jstree", function(e, data)
+                    {
+                        if(jQuery.data(data.rslt.obj[0], "href"))
+                        {
+                            window.location=jQuery.data(data.rslt.obj[0], "href");
+                        }
+                        else
+                        {
+                            alert("No href defined for this element");
+                        }
+                    })
+            });
+        </script>
+    </head>
+    <body>
+        <div id="treeViewDiv">
+        </div>
+    </body>
+</html>

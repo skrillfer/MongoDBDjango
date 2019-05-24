@@ -1,0 +1,14 @@
+{% load staticfiles %}
+<head>
+  <link rel="stylesheet" href="{{ STATIC_URL }}login.css">
+
+<head>
+  <div class="login-page">
+    <div class="form">
+      <form action="/login/" method="get" class="login-form">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Login</button>
+        <p class="message">Not registered? <a href="#">Create an account</a></p>
+      </form>
+    </div>
+  </div>
